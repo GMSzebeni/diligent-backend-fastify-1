@@ -3,7 +3,7 @@ import { PetService } from '../service/pet.service';
 import { PetRepository } from '../repository/pet.repository';
 import { DbClient } from '../db';
 import { JsonSchemaToTsProvider } from '@fastify/type-provider-json-schema-to-ts';
-import { postPetSchema } from '../schemas';
+import { getPetsSchema, postPetSchema } from '../schemas';
 
 type Dependencies = {
   dbClient: DbClient;
@@ -17,9 +17,12 @@ export default function createApp(options = {}, dependencies: Dependencies) {
   
   const app = fastify(options).withTypeProvider<JsonSchemaToTsProvider>();
 
-  app.get('/api/pets', async () => {
+  app.get(
+    '/api/pets', 
+    { schema: getPetsSchema },
+    async (request, reply) => {
     const pets = await petService.getAll();
-    return pets;
+    return reply.status(200).send(pets);
   })
 
   app.post(
