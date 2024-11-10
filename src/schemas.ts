@@ -1,3 +1,28 @@
+export const getPetsSchema = {
+  response: {
+    200: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          id: {
+            type: 'number'
+          }, 
+          name: {
+            type: 'string'
+          },
+          age: {
+            type: 'number'
+          },
+          weightInKg: {
+            type: 'number'
+          }
+        }
+      }
+    }
+  }
+} as const
+
 export const postPetSchema = {
   body: {
     type: 'object',
@@ -23,6 +48,9 @@ export const postPetSchema = {
     201: {
       type: 'object',
       properties: {
+        id: {
+          type: 'number'
+        }, 
         name: {
           type: 'string'
         },
