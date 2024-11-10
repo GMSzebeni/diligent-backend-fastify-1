@@ -6,3 +6,5 @@ export type Pet = {
 };
 
 export type PetToCreate = Omit<Pet, 'id'>;
+
+export type PetWithKind =  Pet & { kind: string };
