@@ -64,3 +64,31 @@ export const postPetSchema = {
     }
   }
 } as const
+
+export const getPetsWithKindsSchema = {
+  response: {
+    200: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          id: {
+            type: 'number'
+          }, 
+          name: {
+            type: 'string'
+          },
+          age: {
+            type: 'number'
+          },
+          weightInKg: {
+            type: 'number'
+          },
+          kind: {
+            type: 'string'
+          }
+        }
+      }
+    }
+  }
+} as const
