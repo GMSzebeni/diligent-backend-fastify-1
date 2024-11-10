@@ -15,14 +15,23 @@ You can try out the `GET /api/pets`, `POST /api/pets` endpoints.
 Answer the following questions:
 
 - Which architecture is applied in this repo?
+layered architecture
 - What kind of elements/components can you identify?
+controller - service - repository
 - Where is the entry point of the repo?
+server.ts
 - What is the scope of the repositories?
+owner and pet tables - crud operation
 - What is the scope of the services?
+business logic
 - What is happening in the controllers?
+request-reply from and to the user
 - Why do we use the `DbClient` type in the pet repository?
+dependency inversion
 - What would you improve in this codebase?
+
 - How does the code handle the `async` route handlers?
+
 
 ### Background material
 
@@ -45,7 +54,7 @@ Right now the user can provide any kind of body for the POST request. Ensure tha
 
 ## Task 2: Determines the reply's body
 
-Add a desired output schema (deserialization) to the `GET /api/pets` and `POST /api/pets`.
+Add a desired output schema (serialization) to the `GET /api/pets` and `POST /api/pets`.
 
 - What do you think what is the advantage of this?
 
