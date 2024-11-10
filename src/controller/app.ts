@@ -3,7 +3,7 @@ import { PetService } from '../service/pet.service';
 import { PetRepository } from '../repository/pet.repository';
 import { DbClient } from '../db';
 import { JsonSchemaToTsProvider } from '@fastify/type-provider-json-schema-to-ts';
-import { getPetsSchema, postPetSchema } from '../pet-schemas';
+import { getPetsSchema, getPetsWithKindsSchema, postPetSchema } from '../pet-schemas';
 import { OwnerService } from '../service/owner.service';
 import { OwnerRepository } from '../repository/owner.repository';
 import { getOwnersSchema, postOwnerSchema } from '../owner-schemas';
@@ -24,9 +24,9 @@ export default function createApp(options = {}, dependencies: Dependencies) {
 
   app.get(
     '/api/pets', 
-    { schema: getPetsSchema },
+    { schema: getPetsWithKindsSchema },
     async (request, reply) => {
-    const pets = await petService.getAll();
+    const pets = await petService.getAllWithKinds();
     return reply.status(200).send(pets);
   })
 
