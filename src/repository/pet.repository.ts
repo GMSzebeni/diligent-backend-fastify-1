@@ -32,6 +32,6 @@ export class PetRepository {
       RETURNING *
     `
     const rows  = await this.client.query(sql, [name, age, weightInKg]) as Array<unknown>
-    return rows.map(this.toEntity)[0]
+    return rows.map(this.toEntity)[0];
   }
 }
