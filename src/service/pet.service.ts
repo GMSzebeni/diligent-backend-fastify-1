@@ -15,4 +15,8 @@ export class PetService {
   async create(pet: PetToCreate) {
     return await this.repository.create(pet);
   }
+
+  async getAllWithKinds() {
+    return await this.repository.readWithKinds();
+  }
 }
