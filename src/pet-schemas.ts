@@ -92,3 +92,52 @@ export const getPetsWithKindsSchema = {
     }
   }
 } as const
+
+export const postPetWithKindSchema = {
+  body: {
+    type: 'object',
+    properties: {
+      name: {
+        type: 'string',
+        minLength: 1,
+        maxLength: 50
+      },
+      age: {
+        type: 'number',
+        minimum: 0
+      },
+      weightInKg: {
+        type: 'number',
+        minimum: 0
+      },
+      kindId: {
+        type: 'number',
+        minimum: 1
+      }
+    },
+    required: ['name', 'age', 'weightInKg'],
+    additionalProperties: false
+  },
+  response: {
+    201: {
+      type: 'object',
+      properties: {
+        id: {
+          type: 'number'
+        }, 
+        name: {
+          type: 'string'
+        },
+        age: {
+          type: 'number'
+        },
+        weightInKg: {
+          type: 'number'
+        },
+        kind: {
+          type: 'string'
+        }
+      }
+    }
+  }
+} as const
