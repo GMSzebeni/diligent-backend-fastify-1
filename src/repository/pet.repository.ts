@@ -29,6 +29,14 @@ export class PetRepository {
     }
   }
 
+  private toKindEntity(record: any): Kind {
+    const { id, name } = record;
+    return {
+      id,
+      name
+    }
+  }
+
   async read({ limit, offset }: { limit?: number, offset?: number } = {}) {
     const sql = 'SELECT id, name, age, weight_in_kg FROM pet LIMIT $1 OFFSET $2;'
     const rows = await this.client.query(sql, [limit, offset]) as Array<unknown>;
@@ -50,5 +58,11 @@ export class PetRepository {
     const sql = 'SELECT pet.id, pet.name, pet.age, pet.weight_in_kg, pet_kind.name kind FROM pet JOIN pet_kind ON pet.kind_id = pet_kind.id LIMIT $1 OFFSET $2';
     const rows = await this.client.query(sql, [limit, offset]) as Array<unknown>;
     return rows.map(this.toEntityWithKind);
+  }
+
+  async readKinds() {
+    const sql = 'SELECT * FROM pet_kind';
+    const rows = await this.client.query(sql) as Array<unknown>;
+    return rows.map(this.toKindEntity);
   }
 }
