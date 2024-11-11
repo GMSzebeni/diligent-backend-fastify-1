@@ -3,10 +3,11 @@ import { PetService } from '../service/pet.service';
 import { PetRepository } from '../repository/pet.repository';
 import { DbClient } from '../db';
 import { JsonSchemaToTsProvider } from '@fastify/type-provider-json-schema-to-ts';
-import { getPetsSchema, getPetsWithKindsSchema, postPetSchema } from '../pet-schemas';
+import { getPetsWithKindsSchema, postPetSchema } from '../pet-schemas';
 import { OwnerService } from '../service/owner.service';
 import { OwnerRepository } from '../repository/owner.repository';
 import { getOwnersSchema, postOwnerSchema } from '../owner-schemas';
+import { getKindsSchema } from '../kind-schemas';
 
 type Dependencies = {
   dbClient: DbClient;
@@ -37,6 +38,15 @@ export default function createApp(options = {}, dependencies: Dependencies) {
     const owners = await ownerService.getAllOwners();
     return reply.status(200).send(owners);
   })
+
+  app.get(
+    '/api/pets/kinds',
+    { schema: getKindsSchema },
+    async (request, reply) => {
+      const kinds = await petService.getAllKinds();
+      return reply.status(200).send(kinds);
+    }
+  )
 
   app.post(
     '/api/pets', 
