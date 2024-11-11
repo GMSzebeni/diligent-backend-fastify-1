@@ -1,4 +1,5 @@
 import { DbClient } from "../db";
+import { Kind } from "../entity/kind.type";
 import { Pet, PetToCreate, PetWithKind } from "../entity/pet.type";
 
 export class PetRepository {
