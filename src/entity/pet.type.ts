@@ -3,8 +3,9 @@ export type Pet = {
   name: string,
   age: number,
   weightInKg: number,
+  kindId?: number
 };
 
 export type PetToCreate = Omit<Pet, 'id'>;
 
-export type PetWithKind =  Pet & { kind: string };
+export type PetWithKind =  Omit<Pet, 'kindId'> & { kind: string };
