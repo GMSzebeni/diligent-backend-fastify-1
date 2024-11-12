@@ -141,3 +141,60 @@ export const postPetWithKindSchema = {
     }
   }
 } as const
+
+export const patchPetWithKindSchema = {
+  params: {
+    type: 'object',
+    properties: {
+      id: {
+        type: 'number',
+        minimum: 1
+      }
+    }
+  },
+  body: {
+    type: 'object',
+    properties: {
+      name: {
+        type: 'string',
+        minLength: 1,
+        maxLength: 50
+      },
+      age: {
+        type: 'number',
+        minimum: 0
+      },
+      weightInKg: {
+        type: 'number',
+        minimum: 0
+      },
+      kindId: {
+        type: 'number',
+        minimum: 1
+      }
+    },
+    additionalProperties: false
+  },
+  response: {
+    200: {
+      type: 'object',
+      properties: {
+        id: {
+          type: 'number'
+        },
+        name: {
+          type: 'string'
+        },
+        age: {
+          type: 'number'
+        },
+        weightInKg: {
+          type: 'number'
+        },
+        kind: {
+          type: 'string'
+        }
+      }
+    }
+  }
+} as const
