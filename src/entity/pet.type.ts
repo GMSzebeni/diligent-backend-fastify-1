@@ -8,4 +8,6 @@ export type Pet = {
 
 export type PetToCreate = Omit<Pet, 'id'>;
 
+export type PetToUpdate = Partial<PetToCreate>;
+
 export type PetWithKind =  Omit<Pet, 'kindId'> & { kind: string };
