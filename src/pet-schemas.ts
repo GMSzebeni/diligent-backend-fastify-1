@@ -147,10 +147,11 @@ export const patchPetWithKindSchema = {
     type: 'object',
     properties: {
       id: {
-        type: 'number',
+        type: 'integer',
         minimum: 1
       }
-    }
+    },
+    required: ['id']
   },
   body: {
     type: 'object',
