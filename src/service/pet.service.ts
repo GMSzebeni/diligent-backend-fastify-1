@@ -1,4 +1,4 @@
-import { PetToCreate } from "../entity/pet.type";
+import { PetToCreate, PetToUpdate } from "../entity/pet.type";
 import { PetRepository } from "../repository/pet.repository"
 
 export class PetService {
@@ -26,5 +26,9 @@ export class PetService {
 
   async createWithKind(pet: PetToCreate) {
     return await this.repository.createWithKind(pet);
+  }
+
+  async updateWithKind(id: number, petToUpdate: PetToUpdate) {
+    return await this.repository.updateWithKind(id, petToUpdate);
   }
 }
