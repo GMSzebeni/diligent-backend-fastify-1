@@ -63,11 +63,7 @@ export default function createApp(options = {}, dependencies: Dependencies) {
     { schema: patchPetWithKindSchema },
     async (request, reply) => {
       const { body: petToUpdate } = request;
-      const { id } = request.params;  // Extract `id` directly from `params`
-
-      if (typeof id !== 'number') {
-        return reply.status(400).send({ error: 'Invalid ID type' });
-      }
+      const { id } = request.params;
 
       const updated = await petService.updateWithKind(id, petToUpdate);
       return reply.status(200).send(updated);
