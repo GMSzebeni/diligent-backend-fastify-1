@@ -3,7 +3,7 @@ import { PetService } from '../service/pet.service';
 import { PetRepository } from '../repository/pet.repository';
 import { DbClient } from '../db';
 import { JsonSchemaToTsProvider } from '@fastify/type-provider-json-schema-to-ts';
-import { getPetsWithKindsSchema, postPetSchema, postPetWithKindSchema } from '../pet-schemas';
+import { getPetsWithKindsSchema, patchPetWithKindSchema, postPetWithKindSchema } from '../pet-schemas';
 import { OwnerService } from '../service/owner.service';
 import { OwnerRepository } from '../repository/owner.repository';
 import { getOwnersSchema, postOwnerSchema } from '../owner-schemas';
@@ -57,6 +57,22 @@ export default function createApp(options = {}, dependencies: Dependencies) {
       const created = await petService.createWithKind(petToCreate);
       return reply.status(201).send(created);
   })
+
+  app.patch(
+    '/api/pets/:id',
+    { schema: patchPetWithKindSchema },
+    async (request, reply) => {
+      const { body: petToUpdate } = request;
+      const { id } = request.params;  // Extract `id` directly from `params`
+
+      if (typeof id !== 'number') {
+        return reply.status(400).send({ error: 'Invalid ID type' });
+      }
+
+      const updated = await petService.updateWithKind(id, petToUpdate);
+      return reply.status(200).send(updated);
+    }
+  )
 
   app.post(
     '/api/owners',
