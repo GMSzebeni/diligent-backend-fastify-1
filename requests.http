@@ -9,4 +9,33 @@ GET {{host}}/api/pets
 POST {{host}}/api/pets
 Content-Type: application/json
 
-{"name": "Fluffy", "age": 5, "weightInKg": 7}
+{"name": "Molly", "age": 4, "weightInKg": 6}
+
+###
+
+GET {{host}}/api/owners
+
+###
+
+POST {{host}}/api/owners
+Content-Type: application/json
+
+{ "name": "Jason", "age": 25 }
+
+###
+
+GET {{host}}/api/pets/kinds
+
+###
+
+POST {{host}}/api/pets
+Content-Type: application/json
+
+{"name": "Jesus", "age": 5, "weightInKg": 4, "kindId": 2}
+
+###
+
+PATCH {{host}}/api/pets/31
+Content-Type: application/json
+
+{"name": "Jesus_updated"}
