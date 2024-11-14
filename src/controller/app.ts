@@ -3,11 +3,11 @@ import { PetService } from '../service/pet.service';
 import { PetRepository } from '../repository/pet.repository';
 import { DbClient } from '../db';
 import { JsonSchemaToTsProvider } from '@fastify/type-provider-json-schema-to-ts';
-import { getPetsWithKindsSchema, patchPetWithKindSchema, postPetWithKindSchema } from '../pet-schemas';
+import { getPetsWithKindsSchema, patchPetWithKindSchema, postPetWithKindSchema } from '../schemas/pet-schemas';
 import { OwnerService } from '../service/owner.service';
 import { OwnerRepository } from '../repository/owner.repository';
-import { getOwnersSchema, postOwnerSchema } from '../owner-schemas';
-import { getKindsSchema } from '../kind-schemas';
+import { getOwnersSchema, postOwnerSchema } from '../schemas/owner-schemas';
+import { getKindsSchema } from '../schemas/kind-schemas';
 
 type Dependencies = {
   dbClient: DbClient;
